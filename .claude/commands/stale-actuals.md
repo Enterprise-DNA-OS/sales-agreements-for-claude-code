@@ -1,4 +1,4 @@
-# Refresh dispatch evidence
+# Refresh order evidence
 
 Run `npm run agreements -- stale-actuals --json`.
 

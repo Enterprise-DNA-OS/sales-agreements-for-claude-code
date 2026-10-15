@@ -16,10 +16,10 @@ const actor={actor:'Test operator'};const today=new Date().toISOString().slice(0
 try{
  run('scripts/migrate.mjs');run('scripts/migrate.mjs');run('scripts/seed.mjs');run('scripts/seed.mjs');
  check(cli('accounts').length===2);check(cli('products').length===2);check(cli('agreements').length===2);check(cli('lines').length===2);check(cli('schedules').length===4);
- const gaps=cli('delivery-gaps');check(gaps.length===2&&Number(gaps[0].gap)===350&&Number(gaps[0].gap_value)===4375);
+ const gaps=cli('commitment-gaps');check(gaps.length===2&&Number(gaps[0].gap)===350&&Number(gaps[0].gap_value)===4375);
  check(cli('renewals-due')[0].days_left===35);check(cli('demand-review').length===1);check(cli('account-review').length===2);check(cli('stale-actuals').length===1);
  check(cli('followups').length===1);check(cli('attention').length===1);check(cli('compliance').some(x=>x.rule==='agreement-evidence'));
- check(cli('show-agreement',{agreement:'HARBOUR ANNUAL SUPPLY'}).schedules.length===3);check(cli('weekly-review')['delivery-gaps'].length===2);
+ check(cli('show-agreement',{agreement:'HARBOUR ANNUAL SUPPLY'}).schedules.length===3);check(cli('weekly-review')['commitment-gaps'].length===2);
  const before=cli('accounts').length;cli('add-account',{...actor,name:'Preview','dry-run':true});check(cli('accounts').length===before);
  const acc=cli('add-account',{...actor,name:'New customer'});const product=cli('add-product',{...actor,name:'Test part',unit:'boxes'});
  const agreement=cli('add-agreement',{...actor,name:'New agreement',account:acc.id,start:today,end:future,currency:'NZD',owner:'Mara'});
@@ -27,7 +27,7 @@ try{
  const line=cli('add-line',{...actor,agreement:agreement.id,product:product.id});
  const schedule=cli('add-schedule',{...actor,line:line.id,start:today,end:future,planned:'10.125',price:'12.3456'});
  cli('add-schedule',{...actor,line:line.id,start:today,end:future,planned:'5',price:'1'},true);
- cli('set-actual',{...actor,schedule:schedule.id,actual:'3.125','as-of':today,evidence:'Dispatch register'});
+ cli('set-actual',{...actor,schedule:schedule.id,actual:'3.125','as-of':today,evidence:'Order register'});
  cli('set-actual',{...actor,schedule:schedule.id,actual:'3','as-of':future,evidence:'Bad future'},true);
  cli('set-plan',{...actor,schedule:schedule.id,planned:'12.125',price:'12.3456',evidence:'Reviewed revision'});
  const updated=cli('schedules').find(x=>x.id===schedule.id);check(Number(updated.gap)===9&&Number(updated.planned_value)===149.69);
@@ -36,8 +36,8 @@ try{
  cli('set-status',{...actor,agreement:agreement.id,status:'Draft',evidence:'Invalid'},true);
  cli('review-account',{...actor,account:acc.id,'review-due':future,purpose:'Supply agreement',evidence:'Account verified'});
  cli('review-agreement',{...actor,agreement:agreement.id,'review-due':future,evidence:'Signed terms',owner:'Theo'});
- const task=cli('add-followup',{...actor,agreement:agreement.id,name:'Check delivery',owner:'Mara',due:today});
- cli('close-followup',{...actor,followup:task.id,resolution:'Dispatch confirmed'});
+ const task=cli('add-followup',{...actor,agreement:agreement.id,name:'Check order quantity',owner:'Mara',due:today});
+ cli('close-followup',{...actor,followup:task.id,resolution:'Order confirmed'});
  check(cli('followups').find(x=>x.id===task.id).state==='done');
  cli('add-account',{...actor,name:'New customer'});check(cli('review-account',{...actor,account:'New customer','review-due':future,purpose:'Test',evidence:'Test'},true).includes('Ambiguous'));
  cli('add-product',{...actor,name:'Bad'},true);cli('add-account',{name:'No actor'},true);cli('accounts',{typo:true},true);

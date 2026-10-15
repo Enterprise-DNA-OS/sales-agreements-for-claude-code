@@ -1,7 +1,7 @@
 [
   {
     "question": "Which closed periods are below the agreed quantity?",
-    "command": "delivery-gaps"
+    "command": "commitment-gaps"
   },
   {
     "question": "Which shortfalls rely on old actuals?",

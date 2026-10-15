@@ -25,7 +25,7 @@ Every data mutation requires --actor and supports --dry-run. Preview first. Set-
 | close followup | /close-followup |
 | compliance | /compliance |
 | customise | /customise |
-| delivery gaps | /delivery-gaps |
+| delivery gaps | /commitment-gaps |
 | demand review | /demand-review |
 | documents | /documents |
 | draft renewal | /draft-renewal |

@@ -27,3 +27,9 @@ Supported statuses are Draft, Approved, Active, Expired and Cancelled. Map other
 Before cutover, compare record counts, every relationship, each currency's scheduled value, product units, actuals dates and at least one complete agreement. Resolve all stale records and test restore from a database backup. Keep Salesforce available until the owner accepts that reconciliation. Enterprise DNA maps the remaining records and builds required connections or screens as part of your version.
 
 Export all local records and history with `npm run agreements -- export --out=exports/agreements.json`. It refuses to overwrite an existing file. This is a readable archive, not an automatic restore command. Protect exports and drafts like the original database.
+
+## Meaning of actual quantities
+
+Salesforce ActualQuantity can be calculated from orders or supplied by an external system. It is not proof of shipment. This build reports commitment gaps, not delivered quantities. Confirm the source calculation mode for each agreement before interpreting a shortfall. [Salesforce's actuals calculation guide](https://help.salesforce.com/s/articleView?id=ind.mfg_sa_actuals_reference.htm&language=en_US&type=5).
+
+Displayed values multiply quantity by the schedule price before discounts. Salesforce ActualAmount, discounts and other source columns remain in the original imported row; the free base does not recreate those financial calculations. Reconcile quantities and raw source amounts separately. Ask Enterprise DNA to map the precise commercial measures your team uses.

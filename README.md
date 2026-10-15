@@ -26,12 +26,12 @@ The Harbour Supply demo is fictional. It contains two overdue shortfalls, an age
 
 ## The weekly desk
 
-/delivery-gaps compares closed schedule periods, /demand-review shows current and upcoming commitments, /renewals-due prepares the renewal list, /account-review compares customer commitments by currency and /weekly-review combines the decisions. /compliance points to missing evidence and record checks. /draft-review and /draft-renewal save HTML to drafts/ and never send it.
+/commitment-gaps compares closed schedule periods, /demand-review shows current and upcoming commitments, /renewals-due prepares the renewal list, /account-review compares customer commitments by currency and /weekly-review combines the decisions. /compliance points to missing evidence and record checks. /draft-review and /draft-renewal save HTML to drafts/ and never send it.
 
 Names match without case sensitivity; UUID prefixes work. Ambiguous matches list candidates and exit 1. Every mutation requires --actor, records an event and supports --dry-run. Quantities use three decimal places; unit prices use four. Calculations run as database decimals. Currencies and product units stay separate. A schedule's actual value is actual quantity times its schedule price, not recognised revenue, tax or an invoice. There is no exchange-rate conversion.
 
 ```bash
-npm run agreements -- set-actual --schedule=DEMO-S1 --actual=800 --as-of=2026-10-15 --evidence="Dispatch register checked" --actor="Mara" --dry-run
+npm run agreements -- set-actual --schedule=DEMO-S1 --actual=800 --as-of=2026-10-15 --evidence="Order register checked" --actor="Mara" --dry-run
 npm run agreements -- add-followup --agreement=DEMO-A1 --name="Confirm recovery quantity" --owner="Mara" --due=2026-10-20 --actor="Mara" --dry-run
 ```
 
@@ -43,7 +43,7 @@ Imported source statuses remain source facts, not local approval. Changed source
 
 These are demonstrated questions, not claims that Salesforce cannot answer them with configuration.
 
-1. Which closed periods are below the agreed quantity? Use `delivery-gaps`.
+1. Which closed periods are below the agreed quantity? Use `commitment-gaps`.
 2. Which shortfalls rely on old actuals? Use `stale-actuals`.
 3. What quantities are committed in upcoming periods? Use `demand-review`.
 4. Which agreements need renewal work in the next 60 days? Use `renewals-due`.
@@ -72,7 +72,7 @@ Edit brand.json for the business name, logo and colours. npm run docs writes dra
 
 1. Put our name and logo on the agreement statement.
 2. Preview our five Salesforce exports.
-3. Check that product units match our dispatch records.
+3. Check that product units match our order records.
 4. Compare each currency's imported totals.
 5. Find our oldest unverified actuals.
 6. Show the agreements ending in the next two months.
@@ -90,3 +90,9 @@ npm test creates isolated data and exercises all 33 CLI commands: schedule bound
 Export with `npm run agreements -- export --out=exports/agreements.json`. The file includes records, source columns and events, and cannot overwrite an existing file. It is a readable archive, not an automatic restore. Test database backups separately.
 
 MIT. Not affiliated with Salesforce or Anthropic. Hosting and coding-agent usage have separate costs. [Research and scope](docs/research.md). [Book 30 minutes with Sam](https://enterprisedna.co/omni/book?offer=replace-software&utm_medium=readme&utm_campaign=salesforce-manufacturing-cloud).
+
+## Meaning of actual quantities
+
+Salesforce ActualQuantity can be calculated from orders or supplied by an external system. It is not proof of shipment. This build reports commitment gaps, not delivered quantities. Confirm the source calculation mode for each agreement before interpreting a shortfall. [Salesforce's actuals calculation guide](https://help.salesforce.com/s/articleView?id=ind.mfg_sa_actuals_reference.htm&language=en_US&type=5).
+
+Displayed values multiply quantity by the schedule price before discounts. Salesforce ActualAmount, discounts and other source columns remain in the original imported row; the free base does not recreate those financial calculations. Reconcile quantities and raw source amounts separately. Ask Enterprise DNA to map the precise commercial measures your team uses.

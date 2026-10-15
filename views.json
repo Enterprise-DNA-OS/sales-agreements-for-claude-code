@@ -5,8 +5,8 @@
     "subtitle": "Fictional demo unless you have imported your own records",
     "sections": [
       {
-        "title": "Delivery shortfalls",
-        "sql": "select account,agreement,product,ends_on,gap,currency,gap_value,actuals_freshness from delivery_gaps order by ends_on"
+        "title": "Commitment shortfalls",
+        "sql": "select account,agreement,product,ends_on,gap,currency,gap_value,actuals_freshness from commitment_gaps order by ends_on"
       },
       {
         "title": "Renewals",
