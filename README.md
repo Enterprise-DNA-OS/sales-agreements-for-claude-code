@@ -6,7 +6,7 @@ Know what customers committed to buy, where actual quantities fall short and whi
 |---|---|---|
 | Free MIT software. Run the demo and import your agreements. | Your products, units, review rules and Salesforce records mapped to your work. | Installed and operated through Omni by Enterprise DNA. One setup fee, then a retainer. |
 
-[Get your version built](https://enterprisedna.co/omni/book?offer=replace-software&utm_medium=readme&utm_campaign=salesforce-manufacturing-cloud) · [Instead of Salesforce Manufacturing Cloud](https://enterprisedna.co/omni/instead-of/salesforce-manufacturing-cloud)
+[Get your version built](https://enterprisedna.co/omni/book?offer=replace-software&utm_medium=readme&utm_campaign=salesforce-manufacturing-cloud) · [Instead of Salesforce Manufacturing Cloud](https://enterprisedna.co/omni/instead-of/salesforce-manufacturing-cloud?utm_source=github&utm_medium=readme&utm_campaign=salesforce-manufacturing-cloud)
 
 ## Start
 
