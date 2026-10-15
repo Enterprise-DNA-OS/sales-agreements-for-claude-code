@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Which closed periods are below the agreed quantity?",
+    "command": "delivery-gaps"
+  },
+  {
+    "question": "Which shortfalls rely on old actuals?",
+    "command": "stale-actuals"
+  },
+  {
+    "question": "What quantities are committed in upcoming periods?",
+    "command": "demand-review"
+  },
+  {
+    "question": "Which agreements need renewal work in the next 60 days?",
+    "command": "renewals-due"
+  },
+  {
+    "question": "Which customer commitments have the largest overdue value in each currency?",
+    "command": "account-review"
+  },
+  {
+    "question": "Which follow-ups are overdue and who owns them?",
+    "command": "attention"
+  },
+  {
+    "question": "Which active agreements lack evidence of their terms?",
+    "command": "compliance"
+  },
+  {
+    "question": "What changed in a schedule and what evidence was recorded?",
+    "command": "activity"
+  },
+  {
+    "question": "What is the complete history we imported for this agreement?",
+    "command": "export"
+  },
+  {
+    "question": "What needs a decision in the weekly supply review?",
+    "command": "weekly-review"
+  }
+]

@@ -1,0 +1,2 @@
+Id,Name,AccountId,StartDate,EndDate,Status,CurrencyIsoCode,OwnerId
+SF-A1,Fixture supply,SF-AC1,2025-01-01,2030-12-31,Active,NZD,SF-OWNER

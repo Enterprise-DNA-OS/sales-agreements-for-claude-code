@@ -1,11 +1,44 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "agreement-statement",
+    "title": "Draft agreement performance statement",
+    "for_each": "select id,name from agreements  order by ends_on",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Agreement record",
+        "sql": "select name,starts_on,ends_on,status,currency,owner,evidence from agreements where id=$1",
+        "note": "Internal working document. Verify the signed agreement before sharing. Actual value means quantity multiplied by schedule price, not recognised revenue or an invoice."
+      },
+      {
+        "title": "Scheduled products",
+        "sql": "select product,starts_on,ends_on,unit,planned,actual,gap,currency,planned_value,actual_value,actuals_freshness from schedule_performance where agreement_id=$1 order by starts_on"
+      },
+      {
+        "title": "Follow-ups",
+        "sql": "select name,owner,due_on,state,resolution from followups where agreement_id=$1 order by due_on"
+      }
+    ]
+  },
+  {
+    "name": "renewal-brief",
+    "title": "Draft renewal brief",
+    "for_each": "select id,name from agreements where status in ('Active','Approved') and ends_on<=current_date+60 order by ends_on",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Agreement record",
+        "sql": "select name,starts_on,ends_on,status,currency,owner,evidence from agreements where id=$1",
+        "note": "Internal working document. Verify the signed agreement before sharing. Actual value means quantity multiplied by schedule price, not recognised revenue or an invoice."
+      },
+      {
+        "title": "Scheduled products",
+        "sql": "select product,starts_on,ends_on,unit,planned,actual,gap,currency,planned_value,actual_value,actuals_freshness from schedule_performance where agreement_id=$1 order by starts_on"
+      },
+      {
+        "title": "Follow-ups",
+        "sql": "select name,owner,due_on,state,resolution from followups where agreement_id=$1 order by due_on"
+      }
     ]
   }
 ]

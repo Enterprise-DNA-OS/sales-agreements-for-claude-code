@@ -1,43 +1,58 @@
-# Sales Agreements for Claude Code: operating instructions
+# Sales Agreements for Claude Code
 
-This file is the brain. Claude Code reads it at the start of every session. It says who this is for, how work gets done, and the one right way to do each recurring job.
+Read README.md and docs/compliance.md. This is a manufacturing account desk for customer commitments, schedule actuals, renewals and follow-ups.
 
-## Who this is for
+Start with read commands. Use the actual database output, keep currencies and units separate, and mark stale evidence. A name or UUID prefix that matches more than one record must be resolved by the listed full ID. Never invent records.
 
-- **Business:** [YOUR BUSINESS]
-- **Operator:** [YOUR NAME], [your role]
-- **What matters most:** [the one or two outcomes you care about]
+Every data mutation requires --actor and supports --dry-run. Preview first. Set-actual replaces a cumulative schedule quantity; it never adds a shipment. Evidence describes the source or decision. Actor text is not authentication. Imported source changes need --replace-source and review. Never send, delete records, publish documents or touch another customer's database.
 
-Fill this in once. A worker with context knows. A worker without it guesses.
+## Routing
 
-## How to work
-
-1. **Take a brief, not a script.** The operator describes the outcome. You run the right command and present the answer.
-2. **Read before you write.** Before drafting anything about a record, read its full history first.
-3. **Plain language.** Short sentences. No filler. Numbers in tables.
-4. **Silent success, loud problems.** No play-by-play. Say what broke and what you did about it.
-5. **Stop at the line.** Anything that sends, deletes, or faces a customer waits for a yes in this session.
-
-## Routing table: one right way for each recurring job
-
-| When the operator asks for... | Use this |
+| Request | Recipe |
 |---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+| README | /README |
+| account review | /account-review |
+| accounts | /accounts |
+| activity | /activity |
+| add account | /add-account |
+| add agreement | /add-agreement |
+| add followup | /add-followup |
+| add line | /add-line |
+| add product | /add-product |
+| add schedule | /add-schedule |
+| agreements | /agreements |
+| attention | /attention |
+| close followup | /close-followup |
+| compliance | /compliance |
+| customise | /customise |
+| delivery gaps | /delivery-gaps |
+| demand review | /demand-review |
+| documents | /documents |
+| draft renewal | /draft-renewal |
+| draft review | /draft-review |
+| export | /export |
+| followups | /followups |
+| help | /help |
+| import | /import |
+| lines | /lines |
+| new view | /new-view |
+| products | /products |
+| renewals due | /renewals-due |
+| review account | /review-account |
+| review agreement | /review-agreement |
+| schedules | /schedules |
+| set actual | /set-actual |
+| set plan | /set-plan |
+| set status | /set-status |
+| show agreement | /show-agreement |
+| stale actuals | /stale-actuals |
+| view | /view |
+| weekly review | /weekly-review |
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
+## Storage
 
-## Hard rules
+The single CLI is scripts/agreements.mjs. .claude/commands holds all recurring recipes. DATABASE_URL selects PostgreSQL; otherwise local PGlite uses DATA_DIR or .data/db. The owner runs trusted commands with restricted database credentials. There are no public RLS policies. Do not expose the owner connection to a browser.
 
-- Never send email or messages from here. Draft to `drafts/`, a person sends.
-- Never delete records without an explicit yes in this session. Prefer marking closed or archived.
-- Never invent a record. If a name is ambiguous, list the candidates and ask.
-- The database is the source of truth. If the answer is not in it, say so.
+Use numbered migrations in supabase/migrations. npm test uses disposable data. npm run demo seeds fictional records and refuses a normal remote database. Keep exports and evidence private. Drafts are written under drafts/. Read-only reports use views/ and docs-out/.
 
-## Where things live
-
-- `scripts/` the CLI. `scripts/lib/db.mjs` picks `DATABASE_URL` (Postgres, Supabase) or the embedded database in `.data/`.
-- `supabase/migrations/` the schema, plain SQL. `npm run migrate` applies it.
-- `.claude/commands/` the slash commands. Add one every time the same ask comes twice.
-- `docs/` the thesis and the guide for moving off Salesforce Manufacturing Cloud.
-
-Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/salesforce-manufacturing-cloud
+Omni by Enterprise DNA installs, customises and operates this system for one setup fee, then a retainer.

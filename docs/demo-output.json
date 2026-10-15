@@ -1,0 +1,24 @@
+{
+  "captured": "2026-10-15",
+  "fictional": true,
+  "screens": [
+    {
+      "title": "Closed-period shortfalls",
+      "ask": "Which customer commitments are behind, and are the actuals current?",
+      "command": "npm run agreements -- delivery-gaps",
+      "output": "account             agreement              product         ends_on     unit    planned   actual    gap      currency  gap_value  actuals_freshness\n  ------------------  ---------------------  --------------  ----------  ------  --------  --------  -------  --------  ---------  -----------------\n  Harbour Components  Harbour annual supply  Filter housing  2026-09-14  pieces  1000.000  650.000   350.000  NZD       4375.00    stale            \n  Harbour Components  Harbour annual supply  Filter housing  2026-10-14  pieces  1200.000  1000.000  200.000  NZD       2500.00    current"
+    },
+    {
+      "title": "Renewal preparation",
+      "ask": "Which agreements need renewal work in the next 60 days?",
+      "command": "npm run agreements -- renewals-due",
+      "output": "agreement              account             owner  ends_on     days_left  status\n  ---------------------  ------------------  -----  ----------  ---------  ------\n  Harbour annual supply  Harbour Components  Mara   2026-11-19  35         Active"
+    },
+    {
+      "title": "Record checks",
+      "ask": "Which agreements or customer records need evidence checked?",
+      "command": "npm run agreements -- compliance",
+      "output": "rule                record_id                             record                 issue                                                   \n  ------------------  ------------------------------------  ---------------------  --------------------------------------------------------\n  actuals-evidence    50000000-0000-0000-0000-000000000001  DEMO-S1                Actuals date missing or stale (business policy: 14 days)\n  agreement-evidence  30000000-0000-0000-0000-000000000002  Southern supply        Missing agreement evidence                              \n  agreement-review    30000000-0000-0000-0000-000000000001  Harbour annual supply  Agreement review missing or overdue                     \n  record-accuracy     10000000-0000-0000-0000-000000000001  Harbour Components     Account accuracy review missing or overdue"
+    }
+  ]
+}

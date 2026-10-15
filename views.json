@@ -1,13 +1,36 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Sales Agreements for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Agreement review",
+    "subtitle": "Fictional demo unless you have imported your own records",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Delivery shortfalls",
+        "sql": "select account,agreement,product,ends_on,gap,currency,gap_value,actuals_freshness from delivery_gaps order by ends_on"
+      },
+      {
+        "title": "Renewals",
+        "sql": "select agreement,account,owner,ends_on,days_left from renewals_due order by ends_on"
+      }
+    ]
+  },
+  {
+    "name": "controls",
+    "title": "Record checks",
+    "sections": [
+      {
+        "title": "Items for review",
+        "sql": "select rule,record,issue from control_exceptions order by rule,record"
+      }
+    ]
+  },
+  {
+    "name": "demand",
+    "title": "Customer commitments",
+    "sections": [
+      {
+        "title": "Planned and actual",
+        "sql": "select agreement,product,starts_on,ends_on,planned,actual,unit,currency,planned_value,actual_value from schedule_performance where status in ('Active','Approved') order by starts_on"
       }
     ]
   }
