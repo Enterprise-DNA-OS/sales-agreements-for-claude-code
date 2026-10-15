@@ -1,3 +1,7 @@
+---
+description: "Read change history"
+---
+
 # Read change history
 
 Run `npm run agreements -- activity --json`.

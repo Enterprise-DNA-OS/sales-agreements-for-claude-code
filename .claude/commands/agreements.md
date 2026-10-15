@@ -1,3 +1,7 @@
+---
+description: "Review supply agreements"
+---
+
 # Review supply agreements
 
 Run `npm run agreements -- agreements --json`.

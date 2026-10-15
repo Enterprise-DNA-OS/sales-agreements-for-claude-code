@@ -1,3 +1,7 @@
+---
+description: "Monday supply review"
+---
+
 # Monday supply review
 
 Run `npm run agreements -- commitment-gaps --json`, then `npm run agreements -- renewals-due --json`, then `npm run agreements -- attention --json`. Run compliance for evidence gaps. The combined `weekly-review --json` command returns all four.

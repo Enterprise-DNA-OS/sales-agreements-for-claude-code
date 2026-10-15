@@ -1,3 +1,7 @@
+---
+description: "Review customer commitments"
+---
+
 # Review customer commitments
 
 Run `npm run agreements -- account-review --json`.

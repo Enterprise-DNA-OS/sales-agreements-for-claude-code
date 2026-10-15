@@ -1,3 +1,7 @@
+---
+description: "Review commitment periods"
+---
+
 # Review commitment periods
 
 Run `npm run agreements -- schedules --json`.

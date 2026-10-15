@@ -1,3 +1,7 @@
+---
+description: "Close followup"
+---
+
 # Close followup
 
 Read the matching records first. Collect the required values from the operator or their source document. Do not invent dates, quantities, evidence or names.

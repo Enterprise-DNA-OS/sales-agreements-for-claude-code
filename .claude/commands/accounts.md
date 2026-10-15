@@ -1,3 +1,7 @@
+---
+description: "Review customer records"
+---
+
 # Review customer records
 
 Run `npm run agreements -- accounts --json`.

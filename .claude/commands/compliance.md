@@ -1,3 +1,7 @@
+---
+description: "Check record evidence"
+---
+
 # Check record evidence
 
 Run `npm run agreements -- compliance --json`.

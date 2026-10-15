@@ -1,3 +1,7 @@
+---
+description: "Prepare demand meeting"
+---
+
 # Prepare demand meeting
 
 Run `npm run agreements -- demand-review --json`.

@@ -1,3 +1,7 @@
+---
+description: "Reconcile closed periods"
+---
+
 # Reconcile closed periods
 
 Run `npm run agreements -- commitment-gaps --json`.

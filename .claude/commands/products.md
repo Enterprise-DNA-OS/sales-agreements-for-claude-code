@@ -1,3 +1,7 @@
+---
+description: "Review products"
+---
+
 # Review products
 
 Run `npm run agreements -- products --json`.

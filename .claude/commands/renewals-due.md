@@ -1,3 +1,7 @@
+---
+description: "Prepare renewal calls"
+---
+
 # Prepare renewal calls
 
 Run `npm run agreements -- renewals-due --json`.

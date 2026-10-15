@@ -10,7 +10,6 @@ Every data mutation requires --actor and supports --dry-run. Preview first. Set-
 
 | Request | Recipe |
 |---|---|
-| README | /README |
 | account review | /account-review |
 | accounts | /accounts |
 | activity | /activity |

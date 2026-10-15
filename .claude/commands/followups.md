@@ -1,3 +1,7 @@
+---
+description: "Review follow-ups"
+---
+
 # Review follow-ups
 
 Run `npm run agreements -- followups --json`.
